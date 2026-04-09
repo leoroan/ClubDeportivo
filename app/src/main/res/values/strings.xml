@@ -1,3 +1,14 @@
 <resources>
-    <string name="app_name">ClubDeportivo</string>
+    <string name="app_name">My Application</string>
+    <string name="saludar">Saludar!</string>
+    <string name="escribe_tu_nombre">Escribe tu nombre</string>
+    <string name="hola">Hola!</string>
+    <string name="login_title">Club Deportivo</string>
+    <string name="login_subtitle">Portal de Gestión</string>
+    <string name="label_username">ingresa tu nombre de usuario o email</string>
+    <string name="label_password">Ingresa tu contrasea</string>
+    <string name="button_login">Ingresar al club</string>
+    <string name="logo_de_un_jugador_para_el_club">logo de un jugador para el club</string>
+    <string name="nombre_de_usuario_o_email">nombre de usuario o email</string>
+    <string name="contrasenia">Contraseña</string>
 </resources>
