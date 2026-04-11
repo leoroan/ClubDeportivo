@@ -1,10 +1,15 @@
 package com.example.clubdeportivo
 
 import android.os.Bundle
+import android.util.Log
+import android.widget.Button
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import com.example.clubdeportivo.database.db.DbHelper
+import android.widget.EditText
+import android.widget.Toast
 
 class LoginActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -15,6 +20,36 @@ class LoginActivity : AppCompatActivity() {
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
+        }
+
+        // 👉 ACÁ abro la DB
+        val dbHelper = DbHelper(this)
+
+        val etUser = findViewById<EditText>(R.id.etUser)
+        val etPass = findViewById<EditText>(R.id.etPass)
+        val btnLogin = findViewById<Button>(R.id.btnLogin)
+
+        btnLogin.setOnClickListener {
+
+            val username = etUser.text.toString().trim()
+            val password = etPass.text.toString().trim()
+
+            if (username.isEmpty() || password.isEmpty()) {
+                Toast.makeText(this, "Completar campos", Toast.LENGTH_SHORT).show()
+                return@setOnClickListener
+            }
+
+            val esValido = dbHelper.validarUsuario(username, password)
+
+            if (esValido) {
+                Toast.makeText(this, "Login OK", Toast.LENGTH_SHORT).show()
+
+                // 👉 navegar a otra pantalla
+                // startActivity(Intent(this, HomeActivity::class.java))
+
+            } else {
+                Toast.makeText(this, "Credenciales incorrectas", Toast.LENGTH_SHORT).show()
+            }
         }
     }
 }
