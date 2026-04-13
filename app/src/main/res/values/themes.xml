@@ -6,4 +6,16 @@
     </style>
 
     <style name="Theme.ClubDeportivo" parent="Base.Theme.ClubDeportivo" />
+
+    <!-- Estilos para corregir la superposición en el BottomNav -->
+    <style name="BottomNavTextActive" parent="TextAppearance.MaterialComponents.Caption">
+        <item name="android:textSize">11sp</item>
+        <item name="android:textAllCaps">false</item>
+        <item name="android:paddingTop">4dp</item>
+    </style>
+
+    <style name="BottomNavTextInactive" parent="TextAppearance.MaterialComponents.Caption">
+        <item name="android:textSize">10sp</item>
+        <item name="android:textAllCaps">false</item>
+    </style>
 </resources>

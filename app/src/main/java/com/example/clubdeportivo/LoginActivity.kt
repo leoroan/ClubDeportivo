@@ -1,7 +1,7 @@
 package com.example.clubdeportivo
 
+import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import android.widget.Button
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
@@ -10,6 +10,7 @@ import androidx.core.view.WindowInsetsCompat
 import com.example.clubdeportivo.database.db.DbHelper
 import android.widget.EditText
 import android.widget.Toast
+import com.example.clubdeportivo.database.usuario.UsuarioDao
 
 class LoginActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -22,8 +23,8 @@ class LoginActivity : AppCompatActivity() {
             insets
         }
 
-        // 👉 ACÁ abro la DB
         val dbHelper = DbHelper(this)
+        val usuarioDao = UsuarioDao(dbHelper)
 
         val etUser = findViewById<EditText>(R.id.etUser)
         val etPass = findViewById<EditText>(R.id.etPass)
@@ -39,14 +40,21 @@ class LoginActivity : AppCompatActivity() {
                 return@setOnClickListener
             }
 
-            val esValido = dbHelper.validarUsuario(username, password)
+            val usuario = usuarioDao.validar(username, password)
 
-            if (esValido) {
-                Toast.makeText(this, "Login OK", Toast.LENGTH_SHORT).show()
+            if (usuario != null) {
+                Toast.makeText(this, "Bienvenido ${usuario.nombre}!", Toast.LENGTH_SHORT).show()
 
                 // 👉 navegar a otra pantalla
                 // startActivity(Intent(this, HomeActivity::class.java))
+                val intent = Intent(this, MainActivity::class.java)
 
+                // opcional: pasar datos al intent
+                intent.putExtra("username", usuario.username)
+                intent.putExtra("nombre", usuario.nombre)
+
+                startActivity(intent)
+                finish()
             } else {
                 Toast.makeText(this, "Credenciales incorrectas", Toast.LENGTH_SHORT).show()
             }

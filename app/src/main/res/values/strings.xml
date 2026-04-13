@@ -12,4 +12,9 @@
     <string name="nombre_de_usuario_o_email">nombre de usuario o email</string>
     <string name="contrasenia">Contraseña</string>
     <string name="app_version">v0.0.1</string>
+    <string name="fgRegistro_title">Nuevo Registro</string>
+    <string name="fgRegistro_info">Complete los datos para dar de alta un nuevo socio en el sistema.</string>
+    <string name="fgRegistro_nombre">Nombre completo</string>
+    <string name="fgRegistro_dni">Documento (DNI)</string>
+    <string name="fgRegistro_confirmar">Confirmar Registro</string>
 </resources>

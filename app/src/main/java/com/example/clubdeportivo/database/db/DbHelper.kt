@@ -6,7 +6,7 @@ import android.database.sqlite.SQLiteDatabase
 import android.database.sqlite.SQLiteOpenHelper
 
 class DbHelper(context: Context) :
-    SQLiteOpenHelper(context, "clubDeportivo.db", null, 1) {
+    SQLiteOpenHelper(context, "clubDeportivo.db", null, 2) {
 
     override fun onCreate(db: SQLiteDatabase) {
 
@@ -26,6 +26,13 @@ class DbHelper(context: Context) :
                 email TEXT NOT NULL
             )
         """)
+
+        val values = ContentValues().apply {
+            put("nombre", "Administrador")
+            put("username", "admin")
+            put("password", "admin123")
+        }
+        db.insert("usuarios", null, values)
     }
 
     override fun onUpgrade(db: SQLiteDatabase, oldVersion: Int, newVersion: Int) {
