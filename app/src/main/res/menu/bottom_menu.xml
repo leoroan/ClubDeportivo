@@ -11,8 +11,8 @@
         android:icon="@drawable/person_add_24px"
         android:title="Registro" />
 
-<!--    <item-->
-<!--        android:id="@+id/perfilFragment"-->
-<!--        android:icon="@drawable/ic_launcher_foreground"-->
-<!--        android:title="Perfil" />-->
+    <item
+        android:id="@+id/menuFragment"
+        android:icon="@drawable/dehaze_24px"
+        android:title="Menu" />
 </menu>

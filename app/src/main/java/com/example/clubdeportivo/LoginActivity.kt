@@ -50,8 +50,9 @@ class LoginActivity : AppCompatActivity() {
                 val intent = Intent(this, MainActivity::class.java)
 
                 // opcional: pasar datos al intent
-                intent.putExtra("username", usuario.username)
-                intent.putExtra("nombre", usuario.nombre)
+                // intent.putExtra("username", usuario.username)
+                // intent.putExtra("nombre", usuario.nombre)
+                intent.putExtra("user", usuario)
 
                 startActivity(intent)
                 finish()

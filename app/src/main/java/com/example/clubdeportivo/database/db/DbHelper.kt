@@ -6,7 +6,7 @@ import android.database.sqlite.SQLiteDatabase
 import android.database.sqlite.SQLiteOpenHelper
 
 class DbHelper(context: Context) :
-    SQLiteOpenHelper(context, "clubDeportivo.db", null, 2) {
+    SQLiteOpenHelper(context, "clubDeportivo.db", null, 3) {
 
     override fun onCreate(db: SQLiteDatabase) {
 
@@ -15,7 +15,8 @@ class DbHelper(context: Context) :
                 id INTEGER PRIMARY KEY AUTOINCREMENT,
                 nombre TEXT NOT NULL,
                 username TEXT NOT NULL UNIQUE,
-                password TEXT NOT NULL
+                password TEXT NOT NULL,
+                rol TEXT NOT NULL
             )
         """)
 
@@ -31,6 +32,7 @@ class DbHelper(context: Context) :
             put("nombre", "Administrador")
             put("username", "admin")
             put("password", "admin123")
+            put("rol","administrador-general")
         }
         db.insert("usuarios", null, values)
     }

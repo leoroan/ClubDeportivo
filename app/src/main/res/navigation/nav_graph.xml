@@ -17,4 +17,10 @@
         android:label="Registro"
         tools:layout="@layout/fragment_registro" />
 
+    <fragment
+        android:id="@+id/menuFragment"
+        android:name="com.example.clubdeportivo.MenuFragment"
+        android:label="Menu"
+        tools:layout="@layout/fragment_menu" />
+
 </navigation>
