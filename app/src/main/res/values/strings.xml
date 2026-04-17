@@ -7,7 +7,7 @@
     <string name="login_subtitle">Portal de Gestión</string>
     <string name="label_username">ingresa tu nombre de usuario o email</string>
     <string name="label_password">Ingresa tu contrasea</string>
-    <string name="button_login">Ingresar al club</string>
+    <string name="button_login">Entrar</string>
     <string name="logo_de_un_jugador_para_el_club">logo de un jugador para el club</string>
     <string name="nombre_de_usuario_o_email">nombre de usuario o email</string>
     <string name="contrasenia">Contraseña</string>

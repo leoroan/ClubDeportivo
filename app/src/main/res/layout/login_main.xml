@@ -10,17 +10,20 @@
     android:padding="32dp">
 
     <!-- Bloque de Cabecera -->
+
     <TextView
         android:id="@+id/tvTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="32dp"
+        android:layout_marginBottom="16dp"
         android:text="@string/login_title"
         android:textColor="@color/black"
         android:textSize="28sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@+id/tvSubtitle"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.496"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_chainStyle="packed" />
@@ -111,6 +114,9 @@
         android:textAllCaps="false"
         android:textColor="@color/white"
         android:textSize="16sp"
+        app:icon="@android:drawable/ic_menu_forward"
+        app:iconPadding="12dp"
+        app:iconGravity="textStart"
         app:backgroundTint="@null"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -118,15 +124,15 @@
         app:layout_constraintTop_toBottomOf="@+id/etPass"
         app:layout_constraintWidth_max="300dp" />
 
-    <ImageView
-        android:id="@+id/login_imageView"
-        android:layout_width="195dp"
-        android:layout_height="154dp"
-        android:contentDescription="@string/logo_de_un_jugador_para_el_club"
-        android:src="@drawable/sports_handball_48dp_173660_fill0_wght400_grad0_opsz48"
-        app:layout_constraintBottom_toTopOf="@+id/tvTitle"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+<!--    <ImageView-->
+<!--        android:id="@+id/login_imageView"-->
+<!--        android:layout_width="195dp"-->
+<!--        android:layout_height="154dp"-->
+<!--        android:contentDescription="@string/logo_de_un_jugador_para_el_club"-->
+<!--        android:src="@drawable/sports_handball_48dp_173660_fill0_wght400_grad0_opsz48"-->
+<!--        app:layout_constraintBottom_toTopOf="@+id/tvTitle"-->
+<!--        app:layout_constraintEnd_toEndOf="parent"-->
+<!--        app:layout_constraintStart_toStartOf="parent" />-->
 
     <TextView
         android:id="@+id/subTv_textView"
