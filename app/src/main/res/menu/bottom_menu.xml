@@ -1,18 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item
-        android:id="@+id/homeFragment"
+        android:id="@+id/nav_inicio"
         android:icon="@drawable/home_24px"
         android:title="Inicio" />
 
-
     <item
-        android:id="@+id/registroFragment"
+        android:id="@+id/nav_registro"
         android:icon="@drawable/person_add_24px"
         android:title="Registro" />
 
     <item
-        android:id="@+id/menuFragment"
+        android:id="@+id/nav_pagos"
+        android:icon="@drawable/receipt_long_24px"
+        android:title="Pagos" />
+
+    <item
+        android:id="@+id/nav_carnet"
+        android:icon="@drawable/id_card_24px"
+        android:title="Carnet" />
+
+    <item
+        android:id="@+id/nav_menu"
         android:icon="@drawable/dehaze_24px"
-        android:title="Menu" />
+        android:title="Menú" />
 </menu>
