@@ -12,7 +12,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.ClubDeportivo">
 
-        <activity android:name=".MainActivity" />
+        <activity android:name=".MainDashboardActivity" />
 
         <activity
             android:name=".LoginActivity"

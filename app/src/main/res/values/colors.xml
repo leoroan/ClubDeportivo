@@ -10,4 +10,9 @@
     <color name="text_primary">#1E293B</color>
     <color name="text_secondary">#64748B</color>
     <color name="error_red">#EF4444</color>
+
+    <!-- Dashboard Colors -->
+    <color name="bg_card_border">#F1F5F9</color>
+    <color name="icon_bg_blue">#EFF6FF</color>
+    <color name="text_card_title">#314158</color>
 </resources>

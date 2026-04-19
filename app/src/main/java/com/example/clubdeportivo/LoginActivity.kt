@@ -47,7 +47,7 @@ class LoginActivity : AppCompatActivity() {
 
                 // 👉 navegar a otra pantalla
                 // startActivity(Intent(this, HomeActivity::class.java))
-                val intent = Intent(this, MainActivity::class.java)
+                val intent = Intent(this, MainDashboardActivity::class.java)
 
                 // opcional: pasar datos al intent
                 // intent.putExtra("username", usuario.username)

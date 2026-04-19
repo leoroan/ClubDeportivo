@@ -1,6 +1,7 @@
 <resources>
     <string name="app_name">El Club Deportivo S.A</string>
     <string name="saludar">Saludar!</string>
+    <string name="app_view_name">Dashboard</string>
     <string name="escribe_tu_nombre">Escribe tu nombre</string>
     <string name="hola">Hola!</string>
     <string name="login_title">Club Deportivo</string>
