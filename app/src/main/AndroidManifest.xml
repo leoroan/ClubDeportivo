@@ -12,6 +12,15 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.ClubDeportivo">
         <activity
+            android:name=".CarnetNoSocioActivity"
+            android:exported="false" />
+        <activity
+            android:name=".CarnetSocioActivity"
+            android:exported="false" />
+        <activity
+            android:name=".VistaCarnetActivity"
+            android:exported="false" />
+        <activity
             android:name=".LoginActivity"
             android:exported="true">
             <intent-filter>
