@@ -24,7 +24,7 @@ class LoginActivity : AppCompatActivity() {
         }
 
         val dbHelper = DbHelper(this)
-        val usuarioDao = UsuarioDao(dbHelper)
+//        val usuarioDao = UsuarioDao(dbHelper)
 
         val etUser = findViewById<EditText>(R.id.etUser)
         val etPass = findViewById<EditText>(R.id.etPass)
@@ -40,25 +40,25 @@ class LoginActivity : AppCompatActivity() {
                 return@setOnClickListener
             }
 
-            val usuario = usuarioDao.validar(username, password)
-
-            if (usuario != null) {
-                Toast.makeText(this, "Bienvenido ${usuario.nombre}!", Toast.LENGTH_SHORT).show()
-
-                // 👉 navegar a otra pantalla
-                // startActivity(Intent(this, HomeActivity::class.java))
-                val intent = Intent(this, MainActivity::class.java)
-
-                // opcional: pasar datos al intent
-                // intent.putExtra("username", usuario.username)
-                // intent.putExtra("nombre", usuario.nombre)
-                intent.putExtra("user", usuario)
-
-                startActivity(intent)
-                finish()
-            } else {
-                Toast.makeText(this, "Credenciales incorrectas", Toast.LENGTH_SHORT).show()
-            }
+//            val usuario = usuarioDao.validar(username, password)
+//
+//            if (usuario != null) {
+//                Toast.makeText(this, "Bienvenido ${usuario.nombre}!", Toast.LENGTH_SHORT).show()
+//
+//                // 👉 navegar a otra pantalla
+//                // startActivity(Intent(this, HomeActivity::class.java))
+//                val intent = Intent(this, MainActivity::class.java)
+//
+//                // opcional: pasar datos al intent
+//                // intent.putExtra("username", usuario.username)
+//                // intent.putExtra("nombre", usuario.nombre)
+//                intent.putExtra("user", usuario)
+//
+//                startActivity(intent)
+//                finish()
+//            } else {
+//                Toast.makeText(this, "Credenciales incorrectas", Toast.LENGTH_SHORT).show()
+//            }
         }
     }
 }
