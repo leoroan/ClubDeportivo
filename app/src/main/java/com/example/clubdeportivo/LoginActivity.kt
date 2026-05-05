@@ -17,7 +17,7 @@ class LoginActivity : AppCompatActivity() {
 
         // 2. Configuramos el click dentro de onCreate
         btnLogin.setOnClickListener {
-            val intent = Intent(this, MainDashboardActivity::class.java)
+            val intent = Intent(this, RegisterActivity::class.java)
             startActivity(intent)
         }
     }

@@ -20,4 +20,10 @@
     <color name="icon_bg_blue">#EFF6FF</color>
     <color name="text_card_title">#314158</color>
 
+    <!-- Register Design System -->
+    <color name="primary">#155DFC</color>
+    <color name="surface">#FFFFFF</color>
+    <color name="background">#F8FAFC</color>
+    <color name="border">#CAD5E2</color>
+    <color name="card_stroke">#F1F5F9</color>
 </resources>
