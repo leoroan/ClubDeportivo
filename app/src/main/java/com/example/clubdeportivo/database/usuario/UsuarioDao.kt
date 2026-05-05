@@ -2,6 +2,7 @@ package com.example.clubdeportivo.database.usuario
 
 import android.content.ContentValues
 import com.example.clubdeportivo.database.db.DbHelper
+import com.example.clubdeportivo.database.models.Usuario
 
 class UsuarioDao(private val dbHelper: DbHelper) {
 
