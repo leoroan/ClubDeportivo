@@ -18,4 +18,8 @@
         android:id="@+id/nav_carnet"
         android:icon="@drawable/carnet"
         android:title="Carnet" />
+    <item
+        android:id="@+id/nav_perfil"
+        android:icon="@drawable/person_24px"
+        android:title="Perfil" />
 </menu>

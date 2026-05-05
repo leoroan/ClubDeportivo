@@ -1,6 +1,7 @@
 package com.example.clubdeportivo
 
 import android.os.Bundle
+import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
@@ -23,7 +24,8 @@ class Deudores : AppCompatActivity() {
         }
 
         binding.btnBack.setOnClickListener {
-            onBackPressedDispatcher.onBackPressed()
+            Toast.makeText(this, "Regresando al perfil", Toast.LENGTH_SHORT).show()
+            finish()
         }
     }
 }
