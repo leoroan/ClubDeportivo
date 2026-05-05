@@ -15,6 +15,9 @@
             android:name=".CarnetNoSocioActivity"
             android:exported="false" />
         <activity
+            android:name=".MainDashboardActivity"
+            android:exported="false" />
+        <activity
             android:name=".CarnetSocioActivity"
             android:exported="false" />
         <activity
