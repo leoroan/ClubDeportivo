@@ -18,6 +18,12 @@
             android:name=".Ajustes"
             android:exported="false" />
         <activity
+            android:name=".PagosActivity"
+            android:exported="false" />
+        <activity
+            android:name=".PerfilUsuarioActivity"
+            android:exported="false" />
+        <activity
             android:name=".Deudores"
             android:exported="false" />
         <activity
