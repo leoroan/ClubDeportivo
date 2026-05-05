@@ -12,12 +12,10 @@ class LoginActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.login_main)
-        // 1. Buscamos el botón por su ID definido en el XML
         val btnLogin = findViewById<Button>(R.id.btnLogin)
 
-        // 2. Configuramos el click dentro de onCreate
         btnLogin.setOnClickListener {
-            val intent = Intent(this, RegisterActivity::class.java)
+            val intent = Intent(this, Ajustes::class.java)
             startActivity(intent)
         }
     }

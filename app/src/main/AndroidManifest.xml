@@ -15,6 +15,12 @@
             android:name=".CarnetNoSocioActivity"
             android:exported="false" />
         <activity
+            android:name=".Ajustes"
+            android:exported="false" />
+        <activity
+            android:name=".Deudores"
+            android:exported="false" />
+        <activity
             android:name=".MainDashboardActivity"
             android:exported="false" />
         <activity
