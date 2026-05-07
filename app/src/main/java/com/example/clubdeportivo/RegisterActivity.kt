@@ -1,5 +1,6 @@
 package com.example.clubdeportivo
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import android.widget.ArrayAdapter
@@ -32,7 +33,7 @@ class RegisterActivity : AppCompatActivity() {
             when (item.itemId) {
                 R.id.nav_home -> {
                     Toast.makeText(this, "Navegando a Inicio", Toast.LENGTH_SHORT).show()
-                    startActivity(android.content.Intent(this, MainDashboardActivity::class.java))
+                    startActivity(android.content.Intent(this, MainActivity::class.java))
                     true
                 }
                 R.id.nav_registro -> {
@@ -49,9 +50,9 @@ class RegisterActivity : AppCompatActivity() {
                     startActivity(android.content.Intent(this, VistaCarnetActivity::class.java))
                     true
                 }
-                R.id.nav_perfil -> {
-                    Toast.makeText(this, "Navegando a Perfil", Toast.LENGTH_SHORT).show()
-                    startActivity(android.content.Intent(this, PerfilUsuarioActivity::class.java))
+                R.id.nav_ajuste -> {
+                    Toast.makeText(this, "Navegando a ajuste y mas", Toast.LENGTH_SHORT).show()
+                    startActivity(Intent(this, AjustesActivity::class.java))
                     true
                 }
                 else -> false
@@ -68,9 +69,9 @@ class RegisterActivity : AppCompatActivity() {
     }
 
     private fun setupInsets() {
-        ViewCompat.setOnApplyWindowInsetsListener(binding.main) { v, insets ->
+        ViewCompat.setOnApplyWindowInsetsListener(binding.root) { v, insets ->
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
-            v.setPadding(systemBars.left, 0, systemBars.right, systemBars.bottom)
+            binding.bottomNavigation.setPadding(0, 0, 0, systemBars.bottom)
             insets
         }
     }

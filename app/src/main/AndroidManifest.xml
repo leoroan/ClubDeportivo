@@ -15,7 +15,7 @@
             android:name=".CarnetNoSocioActivity"
             android:exported="false" />
         <activity
-            android:name=".Ajustes"
+            android:name=".AjustesActivity"
             android:exported="false" />
         <activity
             android:name=".PagosActivity"
@@ -24,10 +24,10 @@
             android:name=".PerfilUsuarioActivity"
             android:exported="false" />
         <activity
-            android:name=".Deudores"
+            android:name=".DeudoresActivity"
             android:exported="false" />
         <activity
-            android:name=".MainDashboardActivity"
+            android:name=".MainActivity"
             android:exported="false" />
         <activity
             android:name=".CarnetSocioActivity"

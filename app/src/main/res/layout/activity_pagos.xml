@@ -127,8 +127,16 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp">
-                <RadioButton android:text="Efectivo" android:layout_width="match_parent" android:layout_height="wrap_content"/>
-                <RadioButton android:text="Tarjeta" android:layout_width="match_parent" android:layout_height="wrap_content"/>
+                <RadioButton
+                    android:text="Efectivo"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:buttonTint="#1D5CFF"/>
+                <RadioButton
+                    android:text="Tarjeta"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:buttonTint="#1D5CFF"/>
             </RadioGroup>
 
             <Button

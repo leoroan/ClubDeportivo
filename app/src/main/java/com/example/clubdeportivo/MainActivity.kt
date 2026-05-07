@@ -6,7 +6,7 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.example.clubdeportivo.databinding.ActivityMainBinding
 
-class MainDashboardActivity : AppCompatActivity() {
+class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -19,7 +19,7 @@ class MainDashboardActivity : AppCompatActivity() {
     }
 
     private fun setupCardListeners() {
-        binding.cardNuevoSocio.setOnClickListener {
+        binding.cardRegistrar.setOnClickListener {
             Toast.makeText(this, "Abriendo registro de nuevo socio", Toast.LENGTH_SHORT).show()
             val intent = Intent(this, RegisterActivity::class.java)
             startActivity(intent)
@@ -31,9 +31,9 @@ class MainDashboardActivity : AppCompatActivity() {
             startActivity(intent)
         }
 
-        binding.cardNuevoNosocio.setOnClickListener {
+        binding.cardAjusteMas.setOnClickListener {
             Toast.makeText(this, "Abriendo registro de no-socio (Pase Diario)", Toast.LENGTH_SHORT).show()
-            val intent = Intent(this, RegisterActivity::class.java)
+            val intent = Intent(this, AjustesActivity::class.java)
             intent.putExtra("MODE", "NO_SOCIO")
             startActivity(intent)
         }
@@ -67,9 +67,9 @@ class MainDashboardActivity : AppCompatActivity() {
                     startActivity(Intent(this, VistaCarnetActivity::class.java))
                     true
                 }
-                R.id.nav_perfil -> {
-                    Toast.makeText(this, "Navegando a Perfil", Toast.LENGTH_SHORT).show()
-                    startActivity(Intent(this, PerfilUsuarioActivity::class.java))
+                R.id.nav_ajuste -> {
+                    Toast.makeText(this, "Navegando a ajuste y mas", Toast.LENGTH_SHORT).show()
+                    startActivity(Intent(this, AjustesActivity::class.java))
                     true
                 }
                 else -> false

@@ -15,16 +15,16 @@ class PerfilUsuarioActivity : AppCompatActivity() {
         val btnVerDeudores = findViewById<Button>(R.id.btn_ver_deudores)
         btnVerDeudores.setOnClickListener {
             Toast.makeText(this, "Navegando a Deudores", Toast.LENGTH_SHORT).show()
-            startActivity(Intent(this, Deudores::class.java))
+            startActivity(Intent(this, DeudoresActivity::class.java))
         }
 
         val bottomNavigation = findViewById<BottomNavigationView>(R.id.bottom_navigation)
-        bottomNavigation.selectedItemId = R.id.nav_perfil
+        bottomNavigation.selectedItemId = R.id.nav_ajuste
         bottomNavigation.setOnItemSelectedListener { item ->
             when (item.itemId) {
                 R.id.nav_home -> {
                     Toast.makeText(this, "Navegando a Inicio", Toast.LENGTH_SHORT).show()
-                    startActivity(Intent(this, MainDashboardActivity::class.java))
+                    startActivity(Intent(this, MainActivity::class.java))
                     true
                 }
                 R.id.nav_registro -> {
@@ -42,8 +42,9 @@ class PerfilUsuarioActivity : AppCompatActivity() {
                     startActivity(Intent(this, VistaCarnetActivity::class.java))
                     true
                 }
-                R.id.nav_perfil -> {
-                    Toast.makeText(this, "Ya estás en Perfil", Toast.LENGTH_SHORT).show()
+                R.id.nav_ajuste -> {
+                    Toast.makeText(this, "Navegando a ajuste y mas", Toast.LENGTH_SHORT).show()
+                    startActivity(Intent(this, AjustesActivity::class.java))
                     true
                 }
                 else -> false

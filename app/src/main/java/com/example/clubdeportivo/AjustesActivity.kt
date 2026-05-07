@@ -7,22 +7,28 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.cardview.widget.CardView
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
-class Ajustes : AppCompatActivity() {
+class AjustesActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_ajustes)
 
         findViewById<CardView>(R.id.btnListadoDeudores)?.setOnClickListener {
             Toast.makeText(this, "Navegando a Listado de Deudores", Toast.LENGTH_SHORT).show()
-            startActivity(Intent(this, Deudores::class.java))
+            startActivity(Intent(this, DeudoresActivity::class.java))
         }
+
+        findViewById<CardView>(R.id.btnMiPerfil)?.setOnClickListener {
+            Toast.makeText(this, "Navegando a Mi Perfil", Toast.LENGTH_SHORT).show()
+            startActivity(Intent(this, PerfilUsuarioActivity::class.java))
+        }
+
 
         val bottomNavigation = findViewById<BottomNavigationView>(R.id.bottom_navigation)
         bottomNavigation.setOnItemSelectedListener { item ->
             when (item.itemId) {
                 R.id.nav_home -> {
                     Toast.makeText(this, "Navegando a Inicio", Toast.LENGTH_SHORT).show()
-                    startActivity(Intent(this, MainDashboardActivity::class.java))
+                    startActivity(Intent(this, MainActivity::class.java))
                     true
                 }
                 R.id.nav_registro -> {
@@ -40,9 +46,9 @@ class Ajustes : AppCompatActivity() {
                     startActivity(Intent(this, VistaCarnetActivity::class.java))
                     true
                 }
-                R.id.nav_perfil -> {
-                    Toast.makeText(this, "Navegando a Perfil", Toast.LENGTH_SHORT).show()
-                    startActivity(Intent(this, PerfilUsuarioActivity::class.java))
+                R.id.nav_ajuste -> {
+                    Toast.makeText(this, "Navegando a ajuste y mas", Toast.LENGTH_SHORT).show()
+                    startActivity(Intent(this, AjustesActivity::class.java))
                     true
                 }
                 else -> false

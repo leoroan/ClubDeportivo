@@ -23,7 +23,7 @@ class CarnetSocioActivity : AppCompatActivity() {
             when (item.itemId) {
                 R.id.nav_home -> {
                     Toast.makeText(this, "Navegando a Inicio", Toast.LENGTH_SHORT).show()
-                    startActivity(Intent(this, MainDashboardActivity::class.java))
+                    startActivity(Intent(this, MainActivity::class.java))
                     true
                 }
                 R.id.nav_registro -> {
@@ -40,9 +40,9 @@ class CarnetSocioActivity : AppCompatActivity() {
                     Toast.makeText(this, "Ya estás en Carnet", Toast.LENGTH_SHORT).show()
                     true
                 }
-                R.id.nav_perfil -> {
-                    Toast.makeText(this, "Navegando a Perfil", Toast.LENGTH_SHORT).show()
-                    startActivity(Intent(this, PerfilUsuarioActivity::class.java))
+                R.id.nav_ajuste -> {
+                    Toast.makeText(this, "Navegando a ajuste y mas", Toast.LENGTH_SHORT).show()
+                    startActivity(Intent(this, AjustesActivity::class.java))
                     true
                 }
                 else -> false
