@@ -12,6 +12,33 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.ClubDeportivo">
         <activity
+            android:name=".CarnetNoSocioActivity"
+            android:exported="false" />
+        <activity
+            android:name=".AjustesActivity"
+            android:exported="false" />
+        <activity
+            android:name=".PagosActivity"
+            android:exported="false" />
+        <activity
+            android:name=".PerfilUsuarioActivity"
+            android:exported="false" />
+        <activity
+            android:name=".DeudoresActivity"
+            android:exported="false" />
+        <activity
+            android:name=".MainActivity"
+            android:exported="false" />
+        <activity
+            android:name=".CarnetSocioActivity"
+            android:exported="false" />
+        <activity
+            android:name=".VistaCarnetActivity"
+            android:exported="false" />
+        <activity
+            android:name=".RegisterActivity"
+            android:exported="false" />
+        <activity
             android:name=".LoginActivity"
             android:exported="true">
             <intent-filter>

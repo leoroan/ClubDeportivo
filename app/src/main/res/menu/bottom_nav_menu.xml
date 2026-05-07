@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/nav_home"
+        android:icon="@drawable/home"
+        android:title="Inicio" />
+
+    <item
+        android:id="@+id/nav_registro"
+        android:icon="@drawable/registro"
+        android:title="Registro" />
+
+    <item
+        android:id="@+id/nav_pagos"
+        android:icon="@drawable/pago"
+        android:title="Pagos" />
+    <item
+        android:id="@+id/nav_carnet"
+        android:icon="@drawable/carnet"
+        android:title="Carnet" />
+    <item
+        android:id="@+id/nav_ajuste"
+        android:icon="@drawable/ajustes"
+        android:title="Ajuste y Mas" />
+</menu>
