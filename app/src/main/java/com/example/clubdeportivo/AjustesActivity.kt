@@ -87,7 +87,6 @@ class AjustesActivity : AppCompatActivity() {
                     true
                 }
                 R.id.nav_ajuste -> {
-                    // Ya estamos aquí
                     true
                 }
                 else -> false

@@ -135,8 +135,7 @@ class RegisterActivity : AppCompatActivity() {
             // Visibilidad de formularios
             binding.layoutSocioExtra.visibility = View.VISIBLE
             binding.layoutNoSocioExtra.visibility = View.GONE
-            
-            // Textos dinámicos
+
             binding.btnConfirmar.text = "Registrar Socio"
             binding.tvHeaderTitle.text = "Nuevo Socio"
         } else {
@@ -162,7 +161,6 @@ class RegisterActivity : AppCompatActivity() {
         }
     }
 
-    // Helper para cambiar estilo de texto programáticamente
     private fun View.textStyleBold(isBold: Boolean) {
         if (this is com.google.android.material.button.MaterialButton) {
             this.typeface = if (isBold) 
