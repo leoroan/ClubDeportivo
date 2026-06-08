@@ -79,7 +79,7 @@ class AjustesActivity : AppCompatActivity() {
                     true
                 }
                 R.id.nav_pagos -> {
-                    startActivity(Intent(this, PagosActivity::class.java))
+                    startActivity(Intent(this, BuscarPersonaActivity::class.java))
                     true
                 }
                 R.id.nav_carnet -> {
@@ -101,6 +101,8 @@ class AjustesActivity : AppCompatActivity() {
             findViewById<TextView>(R.id.tvAdminRol).text = user.rol.replaceFirstChar { it.uppercase() }
         }
     }
+
+
 
     private fun showCrearUsuarioDialog() {
         val dialogView = LayoutInflater.from(this).inflate(R.layout.dialog_crear_usuario, null)

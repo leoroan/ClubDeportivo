@@ -52,6 +52,7 @@
                     android:padding="20dp">
 
                     <TextView
+                        android:id="@+id/txtNombre"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Maria Gomez"
@@ -60,6 +61,7 @@
                         android:textStyle="bold" />
 
                     <TextView
+                        android:id="@+id/txtDetalle"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="N° S-1002 • DNI: 87654321"
@@ -76,12 +78,14 @@
                         android:layout_height="wrap_content">
 
                         <TextView
+
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="Vencimiento"
                             android:textColor="#A0A5B1" />
 
                         <TextView
+                            android:id="@+id/txtVencimiento"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_alignParentEnd="true"
@@ -105,6 +109,7 @@
                             android:textColor="#FFC1C1" />
 
                         <TextView
+                            android:id="@+id/txtMonto"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="$15000"

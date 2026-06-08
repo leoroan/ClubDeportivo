@@ -119,6 +119,7 @@
                     </LinearLayout>
 
                     <TextView
+                        android:id="@+id/tvNombreNoSocio"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="MARIA GOMEZ"
@@ -127,12 +128,14 @@
                         android:paddingTop="10dp"/>
 
                     <TextView
+                        android:id="@+id/tvDetallesNoSocio"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="N° S-1001 * dni:12345678"
                         android:textColor="@color/black"/>
 
                     <TextView
+                        android:id="@+id/tvActividadNoSocio"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:background="@color/gray_light"
@@ -140,6 +143,7 @@
                         android:textColor="@color/black"/>
 
                     <TextView
+                        android:id="@+id/tvVencimientoNoSocio"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="VENCE 22/04/2027"

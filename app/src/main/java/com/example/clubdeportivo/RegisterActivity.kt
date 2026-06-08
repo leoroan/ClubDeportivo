@@ -11,11 +11,18 @@ import androidx.core.content.ContextCompat
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import com.example.clubdeportivo.databinding.ActivityRegisterBinding
+import com.example.clubdeportivo.database.DatabaseHelper
+import com.example.clubdeportivo.models.Persona
+import java.text.SimpleDateFormat
+import java.util.Date
+import java.util.Locale
 
 class RegisterActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityRegisterBinding
     private var isSocioMode = true
+    private lateinit var dbHelper: DatabaseHelper
+    private var listaActividades: List<com.example.clubdeportivo.models.Actividad> = emptyList()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -26,8 +33,10 @@ class RegisterActivity : AppCompatActivity() {
         setupInsets()
         setupDropdown()
         setupListeners()
-        
-        val bottomNavigation = findViewById<com.google.android.material.bottomnavigation.BottomNavigationView>(R.id.bottom_navigation)
+
+        dbHelper = DatabaseHelper(this)
+
+        val bottomNavigation = binding.bottomNavigation
         bottomNavigation.selectedItemId = R.id.nav_registro
         bottomNavigation.setOnItemSelectedListener { item ->
             when (item.itemId) {
@@ -42,7 +51,7 @@ class RegisterActivity : AppCompatActivity() {
                 }
                 R.id.nav_pagos -> {
                     Toast.makeText(this, "Navegando a Pagos", Toast.LENGTH_SHORT).show()
-                    startActivity(android.content.Intent(this, PagosActivity::class.java))
+                    startActivity(android.content.Intent(this, BuscarPersonaActivity::class.java))
                     true
                 }
                 R.id.nav_carnet -> {
@@ -77,10 +86,19 @@ class RegisterActivity : AppCompatActivity() {
     }
 
     private fun setupDropdown() {
-        val actividades = arrayOf("Gimnasio", "Natación", "Fútbol", "Tenis", "Yoga")
-        val adapter = ArrayAdapter(this, android.R.layout.simple_dropdown_item_1line, actividades)
+        dbHelper = DatabaseHelper(this)
+        listaActividades = dbHelper.obtenerActividades()
+        
+        val nombresActividades = listaActividades.map { it.nombre }
+        val adapter = ArrayAdapter(this, android.R.layout.simple_dropdown_item_1line, nombresActividades)
         binding.actividadDropdown.setAdapter(adapter)
+        
+        // Seleccionar la primera por defecto si existe
+        if (nombresActividades.isNotEmpty()) {
+            binding.actividadDropdown.setText(nombresActividades[0], false)
+        }
     }
+
 
     private fun setupListeners() {
         binding.btnTabSocio.setOnClickListener {
@@ -96,21 +114,112 @@ class RegisterActivity : AppCompatActivity() {
         }
 
         binding.btnConfirmar.setOnClickListener {
-            val modo = if (isSocioMode) "Socio" else "No-Socio"
+
             val nombre = binding.etNombre.text.toString()
-            
-            if (nombre.isEmpty()) {
-                Toast.makeText(this, "Por favor, ingrese el nombre", Toast.LENGTH_SHORT).show()
+            val apellido = binding.etApellido.text.toString()
+            val dni = binding.etDni.text.toString()
+            val fechaNac = binding.etFechaNacimiento.text.toString()
+            val direccion = binding.etDireccion.text.toString()
+            val telefono = binding.etTelefono.text.toString()
+
+            if (nombre.isBlank() || dni.isBlank()) {
+                Toast.makeText(this, "Nombre y DNI son obligatorios", Toast.LENGTH_SHORT).show()
                 return@setOnClickListener
             }
 
-            if (isSocioMode && !binding.cbAptoFisico.isChecked) {
-                Toast.makeText(this, "Debe validar el apto físico del socio", Toast.LENGTH_SHORT).show()
-                return@setOnClickListener
-            }
+            try {
 
-            Toast.makeText(this, "Registrando $modo: $nombre", Toast.LENGTH_SHORT).show()
+                val persona = Persona(
+                    nombre = nombre,
+                    apellido = apellido,
+                    fechaNacimiento = fechaNac,
+                    direccion = direccion,
+                    dni = dni,
+                    telefono = telefono,
+                    aptoFisico = binding.cbAptoFisico.isChecked
+                )
+
+                if (isSocioMode) {
+
+                    val resultado =
+                        dbHelper.registrarSocio(
+                            persona = persona,
+                            fechaInscripcion = "2026-06-08",
+                            fechaVencimiento = "2026-07-08",
+                            importeMensual = 15000.0
+                        )
+
+                    if (resultado > 0) {
+
+                        Toast.makeText(
+                            this,
+                            "Socio registrado correctamente",
+                            Toast.LENGTH_LONG
+                        ).show()
+
+                    } else {
+
+                        Toast.makeText(
+                            this,
+                            "Error al registrar socio",
+                            Toast.LENGTH_LONG
+                        ).show()
+                    }
+
+                } else {
+
+                    val nombreActividadSeleccionada = binding.actividadDropdown.text.toString()
+                    val actividad = listaActividades.find { it.nombre == nombreActividadSeleccionada }
+
+                    if (actividad == null) {
+                        Toast.makeText(this, "Por favor seleccione una actividad válida", Toast.LENGTH_LONG).show()
+                        return@setOnClickListener
+                    }
+
+                    val sdf = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault())
+                    val fechaHoy = sdf.format(Date())
+
+                    val resultado =
+                        dbHelper.registrarNoSocio(
+                            persona = persona,
+                            actividad = actividad,
+                            fecha = fechaHoy
+                        )
+
+
+                    if (resultado > 0) {
+
+                        Toast.makeText(
+                            this,
+                            "No socio registrado",
+                            Toast.LENGTH_LONG
+                        ).show()
+
+                    } else {
+
+                        Toast.makeText(
+                            this,
+                            "Error al registrar",
+                            Toast.LENGTH_LONG
+                        ).show()
+                    }
+                }
+
+            } catch (e: Exception) {
+
+                e.printStackTrace()
+
+                Toast.makeText(
+                    this,
+                    e.message,
+                    Toast.LENGTH_LONG
+                ).show()
+            }
         }
+
+
+
+
     }
 
     private fun updateUI() {

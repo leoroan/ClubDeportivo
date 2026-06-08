@@ -120,25 +120,29 @@
                     </LinearLayout>
 
                     <TextView
+                        android:id="@+id/tvNombreSocio"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="JUAN PEREZ"
+                        android:text="NOMBRE APELLIDO"
                         android:textSize="18sp"
                         android:paddingTop="10dp"
                         android:textColor="@color/white"/>
 
                     <TextView
+                        android:id="@+id/tvDetallesSocio"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="N° S-1001 * dni:12345678"
+                        android:text="N° S-0000 * dni:00000000"
                         android:textColor="@color/white"/>
 
                     <TextView
+                        android:id="@+id/tvVencimientoSocio"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="VENCE 22/04/2027"
+                        android:text="VENCE 00/00/0000"
                         android:textColor="@color/white"
                         android:paddingBottom="20dp"/>
+
 
                     <ImageView
                         android:layout_width="50dp"

@@ -27,7 +27,7 @@ class MainActivity : AppCompatActivity() {
 
         binding.cardCobrarPago.setOnClickListener {
             Toast.makeText(this, "Abriendo sección de pagos", Toast.LENGTH_SHORT).show()
-            val intent = Intent(this, PagosActivity::class.java)
+            val intent = Intent(this, BuscarPersonaActivity::class.java)
             startActivity(intent)
         }
 
@@ -59,7 +59,7 @@ class MainActivity : AppCompatActivity() {
                 }
                 R.id.nav_pagos -> {
                     Toast.makeText(this, "Navegando a Pagos", Toast.LENGTH_SHORT).show()
-                    startActivity(Intent(this, PagosActivity::class.java))
+                    startActivity(Intent(this, BuscarPersonaActivity::class.java))
                     true
                 }
                 R.id.nav_carnet -> {

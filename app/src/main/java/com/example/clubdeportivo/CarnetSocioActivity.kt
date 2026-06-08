@@ -7,10 +7,21 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
+import android.widget.TextView
+import com.example.clubdeportivo.models.Socio
+
 class CarnetSocioActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_carnet_socio)
+
+        val socio = intent.getSerializableExtra("socio") as? Socio
+
+        socio?.let {
+            findViewById<TextView>(R.id.tvNombreSocio).text = "${it.nombre} ${it.apellido}"
+            findViewById<TextView>(R.id.tvDetallesSocio).text = "N° S-${it.carnetNumero} * DNI: ${it.dni}"
+            findViewById<TextView>(R.id.tvVencimientoSocio).text = "VENCE ${it.vencimiento.ifEmpty { "N/A" }}"
+        }
 
         findViewById<Button>(R.id.btn_cerrar)?.setOnClickListener {
             Toast.makeText(this, "Cerrando carnet", Toast.LENGTH_SHORT).show()
