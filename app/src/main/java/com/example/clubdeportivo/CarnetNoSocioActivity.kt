@@ -25,6 +25,10 @@ class CarnetNoSocioActivity : AppCompatActivity() {
             findViewById<TextView>(R.id.tvActividadNoSocio).text = "PASE DIARIO"
         }
 
+        findViewById<android.widget.ImageButton>(R.id.btnBack).setOnClickListener {
+            finish()
+        }
+
         findViewById<Button>(R.id.btn_cerrar)?.setOnClickListener {
             Toast.makeText(this, "Cerrando carnet", Toast.LENGTH_SHORT).show()
             finish()

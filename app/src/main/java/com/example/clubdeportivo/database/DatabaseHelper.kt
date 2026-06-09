@@ -11,7 +11,7 @@ class DatabaseHelper(context: Context) : SQLiteOpenHelper(context, DATABASE_NAME
 
     companion object {
         private const val DATABASE_NAME = "ClubDeportivo.db"
-        private const val DATABASE_VERSION = 3
+        private const val DATABASE_VERSION = 4
     }
 
     override fun onConfigure(db: SQLiteDatabase) {
@@ -171,6 +171,34 @@ class DatabaseHelper(context: Context) : SQLiteOpenHelper(context, DATABASE_NAME
         ('Natacion',7000),
         ('Padel',6000)
     """)
+
+        // Socio de prueba con deuda
+        val personaTest = ContentValues().apply {
+            put("nombre", "Carlos")
+            put("apellido", "Deudor")
+            put("fechaNacimiento", "1990-01-01")
+            put("direccion", "Calle Falsa 123")
+            put("dni", "12345678")
+            put("telefono", "1122334455")
+            put("aptoFisico", 1)
+        }
+        val idPersonaTest = db.insert("persona", null, personaTest)
+
+        val socioTest = ContentValues().apply {
+            put("idPersona", idPersonaTest)
+            put("fechaInscripcion", "2024-01-01")
+            put("activo", 1)
+        }
+        val carnetTest = db.insert("socio", null, socioTest)
+
+        val cuotaTest = ContentValues().apply {
+            put("carnetNumero", carnetTest)
+            put("fechaGeneracion", "2024-01-01")
+            put("fechaVencimiento", "2024-02-01")
+            put("importe", 15000.0)
+            put("estado", 0) // PENDIENTE
+        }
+        db.insert("cuota", null, cuotaTest)
     }
 
     fun autenticar(
@@ -1331,6 +1359,47 @@ class DatabaseHelper(context: Context) : SQLiteOpenHelper(context, DATABASE_NAME
     }
 
 
+    fun buscarSociosDeudores(filtro: String = ""): List<Socio> {
+        val lista = mutableListOf<Socio>()
+        val db = readableDatabase
+
+        val cursor = db.rawQuery(
+            """
+        SELECT 
+            s.carnetNumero, s.idPersona, s.fechaInscripcion, s.activo,
+            p.nombre, p.apellido, p.dni, p.telefono, p.direccion, p.fechaNacimiento, p.aptoFisico
+        FROM socio s
+        INNER JOIN persona p ON p.idPersona = s.idPersona
+        INNER JOIN cuota c ON s.carnetNumero = c.carnetNumero
+        WHERE c.estado = 0 
+        AND (p.nombre LIKE ? OR p.apellido LIKE ? OR p.dni LIKE ?)
+        ORDER BY p.apellido, p.nombre
+        """,
+            arrayOf("%$filtro%", "%$filtro%", "%$filtro%")
+        )
+
+        while (cursor.moveToNext()) {
+            val carnetNumero = cursor.getLong(cursor.getColumnIndexOrThrow("carnetNumero"))
+            val cuota = obtenerCuotaActual(carnetNumero)
+            lista.add(Socio(
+                carnetNumero = carnetNumero,
+                idPersona = cursor.getLong(cursor.getColumnIndexOrThrow("idPersona")),
+                nombre = cursor.getString(cursor.getColumnIndexOrThrow("nombre")),
+                apellido = cursor.getString(cursor.getColumnIndexOrThrow("apellido")),
+                dni = cursor.getString(cursor.getColumnIndexOrThrow("dni")),
+                telefono = cursor.getString(cursor.getColumnIndexOrThrow("telefono")),
+                direccion = cursor.getString(cursor.getColumnIndexOrThrow("direccion")),
+                fechaNacimiento = cursor.getString(cursor.getColumnIndexOrThrow("fechaNacimiento")),
+                aptoFisico = cursor.getInt(cursor.getColumnIndexOrThrow("aptoFisico")) == 1,
+                fechaInscripcion = cursor.getString(cursor.getColumnIndexOrThrow("fechaInscripcion")),
+                activo = cursor.getInt(cursor.getColumnIndexOrThrow("activo")) == 1,
+                vencimiento = cuota?.vencimiento ?: ""
+            ))
+        }
+        cursor.close()
+        return lista
+    }
+
     fun buscarNoSocios(filtro: String = ""): List<Socio> {
         val lista = mutableListOf<Socio>()
         val db = readableDatabase
@@ -1338,15 +1407,8 @@ class DatabaseHelper(context: Context) : SQLiteOpenHelper(context, DATABASE_NAME
         val cursor = db.rawQuery(
             """
             SELECT 
-                ns.carnetTemporal,
-                ns.idPersona,
-                p.nombre,
-                p.apellido,
-                p.dni,
-                p.telefono,
-                p.direccion,
-                p.fechaNacimiento,
-                p.aptoFisico
+                ns.carnetTemporal, ns.idPersona,
+                p.nombre, p.apellido, p.dni, p.telefono, p.direccion, p.fechaNacimiento, p.aptoFisico
             FROM nosocio ns
             INNER JOIN persona p ON p.idPersona = ns.idPersona
             WHERE p.nombre LIKE ? OR p.apellido LIKE ? OR p.dni LIKE ?
@@ -1356,22 +1418,59 @@ class DatabaseHelper(context: Context) : SQLiteOpenHelper(context, DATABASE_NAME
         )
 
         while (cursor.moveToNext()) {
-            lista.add(
-                Socio(
-                    carnetNumero = cursor.getLong(cursor.getColumnIndexOrThrow("carnetTemporal")),
-                    idPersona = cursor.getLong(cursor.getColumnIndexOrThrow("idPersona")),
-                    nombre = cursor.getString(cursor.getColumnIndexOrThrow("nombre")),
-                    apellido = cursor.getString(cursor.getColumnIndexOrThrow("apellido")),
-                    dni = cursor.getString(cursor.getColumnIndexOrThrow("dni")),
-                    telefono = cursor.getString(cursor.getColumnIndexOrThrow("telefono")),
-                    direccion = cursor.getString(cursor.getColumnIndexOrThrow("direccion")),
-                    fechaNacimiento = cursor.getString(cursor.getColumnIndexOrThrow("fechaNacimiento")),
-                    aptoFisico = cursor.getInt(cursor.getColumnIndexOrThrow("aptoFisico")) == 1,
-                    fechaInscripcion = "",
-                    activo = true,
-                    vencimiento = "Pase Diario"
-                )
-            )
+            lista.add(Socio(
+                carnetNumero = cursor.getLong(cursor.getColumnIndexOrThrow("carnetTemporal")),
+                idPersona = cursor.getLong(cursor.getColumnIndexOrThrow("idPersona")),
+                nombre = cursor.getString(cursor.getColumnIndexOrThrow("nombre")),
+                apellido = cursor.getString(cursor.getColumnIndexOrThrow("apellido")),
+                dni = cursor.getString(cursor.getColumnIndexOrThrow("dni")),
+                telefono = cursor.getString(cursor.getColumnIndexOrThrow("telefono")),
+                direccion = cursor.getString(cursor.getColumnIndexOrThrow("direccion")),
+                fechaNacimiento = cursor.getString(cursor.getColumnIndexOrThrow("fechaNacimiento")),
+                aptoFisico = cursor.getInt(cursor.getColumnIndexOrThrow("aptoFisico")) == 1,
+                fechaInscripcion = "",
+                activo = true,
+                vencimiento = "Pase Diario"
+            ))
+        }
+        cursor.close()
+        return lista
+    }
+
+    fun buscarNoSociosDeudores(filtro: String = ""): List<Socio> {
+        val lista = mutableListOf<Socio>()
+        val db = readableDatabase
+
+        val cursor = db.rawQuery(
+            """
+            SELECT 
+                ns.carnetTemporal, ns.idPersona,
+                p.nombre, p.apellido, p.dni, p.telefono, p.direccion, p.fechaNacimiento, p.aptoFisico
+            FROM nosocio ns
+            INNER JOIN persona p ON p.idPersona = ns.idPersona
+            INNER JOIN pago_actividad pa ON ns.carnetTemporal = pa.carnetTemporal
+            WHERE pa.estado = 0
+            AND (p.nombre LIKE ? OR p.apellido LIKE ? OR p.dni LIKE ?)
+            ORDER BY p.apellido, p.nombre
+            """,
+            arrayOf("%$filtro%", "%$filtro%", "%$filtro%")
+        )
+
+        while (cursor.moveToNext()) {
+            lista.add(Socio(
+                carnetNumero = cursor.getLong(cursor.getColumnIndexOrThrow("carnetTemporal")),
+                idPersona = cursor.getLong(cursor.getColumnIndexOrThrow("idPersona")),
+                nombre = cursor.getString(cursor.getColumnIndexOrThrow("nombre")),
+                apellido = cursor.getString(cursor.getColumnIndexOrThrow("apellido")),
+                dni = cursor.getString(cursor.getColumnIndexOrThrow("dni")),
+                telefono = cursor.getString(cursor.getColumnIndexOrThrow("telefono")),
+                direccion = cursor.getString(cursor.getColumnIndexOrThrow("direccion")),
+                fechaNacimiento = cursor.getString(cursor.getColumnIndexOrThrow("fechaNacimiento")),
+                aptoFisico = cursor.getInt(cursor.getColumnIndexOrThrow("aptoFisico")) == 1,
+                fechaInscripcion = "",
+                activo = true,
+                vencimiento = "Pase Diario"
+            ))
         }
         cursor.close()
         return lista

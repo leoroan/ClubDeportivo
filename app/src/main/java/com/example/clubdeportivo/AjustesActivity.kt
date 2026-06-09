@@ -42,6 +42,10 @@ class AjustesActivity : AppCompatActivity() {
     }
 
     private fun setupUI() {
+        findViewById<android.widget.ImageButton>(R.id.btnBack)?.setOnClickListener {
+            finish()
+        }
+
         findViewById<CardView>(R.id.btnListadoDeudores)?.setOnClickListener {
             Toast.makeText(this, "Navegando a Listado de Deudores", Toast.LENGTH_SHORT).show()
             startActivity(Intent(this, DeudoresActivity::class.java))

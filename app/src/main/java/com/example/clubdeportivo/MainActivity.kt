@@ -14,6 +14,9 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        val user = com.example.clubdeportivo.database.SessionManager.getInstance(this).getUserDetails()
+        binding.greetingText.text = "Hola, ${user?.nombre ?: "Usuario"}"
+
         setupCardListeners()
         setupBottomNavigation()
     }

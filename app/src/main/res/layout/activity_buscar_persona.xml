@@ -1,21 +1,43 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:background="#F8FAFF">
 
     <!-- Header -->
-    <TextView
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="80dp"
         android:background="#1D5CFF"
-        android:gravity="center"
-        android:text="Buscar Persona"
-        android:textColor="#FFFFFF"
-        android:textSize="20sp"
-        android:textStyle="bold"/>
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:paddingHorizontal="16dp">
+
+        <ImageButton
+            android:id="@+id/btnBack"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:background="?android:attr/selectableItemBackgroundBorderless"
+            android:src="@android:drawable/ic_menu_revert"
+            app:tint="#FFFFFF" />
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="Buscar Persona"
+            android:textColor="#FFFFFF"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+
+        <View
+            android:layout_width="48dp"
+            android:layout_height="48dp" />
+    </LinearLayout>
 
     <!-- Buscador -->
     <EditText
@@ -28,12 +50,13 @@
         android:background="@android:drawable/edit_text"/>
 
     <!-- Lista -->
-    <ListView
-        android:id="@+id/listSocios"
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rvSocios"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"
-        android:layout_margin="16dp"/>
+        android:layout_marginTop="8dp"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"/>
 
     <!-- Menú inferior -->
     <com.google.android.material.bottomnavigation.BottomNavigationView
@@ -41,7 +64,6 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="?attr/colorSurface"
-        app:menu="@menu/bottom_nav_menu"
-        xmlns:app="http://schemas.android.com/apk/res-auto"/>
+        app:menu="@menu/bottom_nav_menu"/>
 
 </LinearLayout>

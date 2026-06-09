@@ -2,19 +2,18 @@ package com.example.clubdeportivo
 
 import android.content.Intent
 import android.os.Bundle
-import android.widget.LinearLayout
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import com.google.android.material.bottomnavigation.BottomNavigationView
-
-import android.widget.ArrayAdapter
-import android.widget.ListView
+import androidx.recyclerview.widget.RecyclerView
+import com.example.clubdeportivo.adapters.PersonaAdapter
 import com.example.clubdeportivo.database.DatabaseHelper
 import com.example.clubdeportivo.models.Socio
+import com.google.android.material.bottomnavigation.BottomNavigationView
+
 
 class VistaCarnetActivity : AppCompatActivity() {
     private lateinit var dbHelper: DatabaseHelper
-    private lateinit var listCarnets: ListView
+    private lateinit var rvCarnets: RecyclerView
+    private lateinit var adapter: PersonaAdapter
     private var listaResultados = mutableListOf<Pair<String, Socio>>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -22,8 +21,13 @@ class VistaCarnetActivity : AppCompatActivity() {
         setContentView(R.layout.activity_vista_carnet)
 
         dbHelper = DatabaseHelper(this)
-        listCarnets = findViewById(R.id.listCarnets)
+        rvCarnets = findViewById(R.id.rvCarnets)
 
+        findViewById<android.widget.ImageButton>(R.id.btnBack).setOnClickListener {
+            finish()
+        }
+
+        setupRecyclerView()
         cargarLista()
 
         val bottomNavigation = findViewById<BottomNavigationView>(R.id.bottom_navigation)
@@ -54,27 +58,8 @@ class VistaCarnetActivity : AppCompatActivity() {
         }
     }
 
-    private fun cargarLista() {
-        listaResultados.clear()
-        
-        // Cargar Socios
-        val socios = dbHelper.obtenerSocios()
-        socios.forEach { listaResultados.add(Pair("SOCIO", it)) }
-
-        // Cargar No Socios
-        val noSocios = dbHelper.buscarNoSocios("")
-        noSocios.forEach { listaResultados.add(Pair("NO_SOCIO", it)) }
-
-        val textos = listaResultados.map { (tipo, s) ->
-            val prefijo = if (tipo == "SOCIO") "S" else "NS"
-            "${s.nombre} ${s.apellido}\nN° $prefijo-${s.carnetNumero} * DNI: ${s.dni}"
-        }
-
-        val adapter = ArrayAdapter(this, android.R.layout.simple_list_item_1, textos)
-        listCarnets.adapter = adapter
-
-        listCarnets.setOnItemClickListener { _, _, position, _ ->
-            val seleccion = listaResultados[position]
+    private fun setupRecyclerView() {
+        adapter = PersonaAdapter(listaResultados) { seleccion ->
             val tipo = seleccion.first
             val socio = seleccion.second
 
@@ -88,5 +73,20 @@ class VistaCarnetActivity : AppCompatActivity() {
                 startActivity(intent)
             }
         }
+        rvCarnets.adapter = adapter
+    }
+
+    private fun cargarLista() {
+        listaResultados.clear()
+        
+        // Cargar Socios
+        val socios = dbHelper.obtenerSocios()
+        socios.forEach { listaResultados.add(Pair("SOCIO", it)) }
+
+        // Cargar No Socios
+        val noSocios = dbHelper.buscarNoSocios("")
+        noSocios.forEach { listaResultados.add(Pair("NO_SOCIO", it)) }
+
+        adapter.updateData(listaResultados)
     }
 }

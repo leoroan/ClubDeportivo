@@ -51,7 +51,7 @@
                 android:layout_height="wrap_content"
                 android:text="Hola, Usuario"
                 android:textColor="@color/text_primary"
-                android:textSize="24sp"
+                android:textSize="26sp"
                 android:textStyle="bold"
                 tools:text="Hola, Juan Pérez" />
 
@@ -59,7 +59,7 @@
                 android:id="@+id/section_title"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="24dp"
+                android:layout_marginTop="32dp"
                 android:text="Accesos Rápidos"
                 android:textColor="@color/text_secondary"
                 android:textSize="18sp"
@@ -70,32 +70,32 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
-                android:layout_marginTop="16dp"
+                android:layout_marginTop="24dp"
                 android:weightSum="2">
 
                 <com.google.android.material.card.MaterialCardView
                     android:id="@+id/card_registrar"
                     android:layout_width="0dp"
-                    android:layout_height="wrap_content"
+                    android:layout_height="160dp"
                     android:layout_weight="1"
-                    android:layout_marginEnd="8dp"
+                    android:layout_marginEnd="12dp"
                     android:clickable="true"
                     android:focusable="true"
                     app:cardCornerRadius="16dp"
-                    app:cardElevation="2dp"
+                    app:cardElevation="4dp"
                     app:strokeColor="@color/bg_card_border"
                     app:strokeWidth="1dp">
 
                     <LinearLayout
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
+                        android:layout_height="match_parent"
                         android:gravity="center"
                         android:orientation="vertical"
                         android:padding="16dp">
 
                         <ImageView
-                            android:layout_width="40dp"
-                            android:layout_height="40dp"
+                            android:layout_width="48dp"
+                            android:layout_height="48dp"
                             android:src="@drawable/person_add_24px"
                             android:contentDescription="Icono"
                             app:tint="@color/header_blue" />
@@ -106,7 +106,7 @@
                             android:layout_marginTop="12dp"
                             android:text="Registrar"
                             android:textColor="@color/text_card_title"
-                            android:textSize="14sp"
+                            android:textSize="16sp"
                             android:textStyle="bold" />
 
                     </LinearLayout>
@@ -115,26 +115,26 @@
                 <com.google.android.material.card.MaterialCardView
                     android:id="@+id/card_cobrar_pago"
                     android:layout_width="0dp"
-                    android:layout_height="wrap_content"
+                    android:layout_height="160dp"
                     android:layout_weight="1"
-                    android:layout_marginStart="8dp"
+                    android:layout_marginStart="12dp"
                     android:clickable="true"
                     android:focusable="true"
                     app:cardCornerRadius="16dp"
-                    app:cardElevation="2dp"
+                    app:cardElevation="4dp"
                     app:strokeColor="@color/bg_card_border"
                     app:strokeWidth="1dp">
 
                     <LinearLayout
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
+                        android:layout_height="match_parent"
                         android:gravity="center"
                         android:orientation="vertical"
                         android:padding="16dp">
 
                         <ImageView
-                            android:layout_width="40dp"
-                            android:layout_height="40dp"
+                            android:layout_width="48dp"
+                            android:layout_height="48dp"
                             android:src="@drawable/receipt_long_24px"
                             android:contentDescription="Icono"
                             app:tint="@color/header_blue" />
@@ -145,7 +145,7 @@
                             android:layout_marginTop="12dp"
                             android:text="Cobrar Pago"
                             android:textColor="@color/text_card_title"
-                            android:textSize="14sp"
+                            android:textSize="16sp"
                             android:textStyle="bold" />
 
                     </LinearLayout>
@@ -158,32 +158,32 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
-                android:layout_marginTop="16dp"
+                android:layout_marginTop="24dp"
                 android:weightSum="2">
 
                 <com.google.android.material.card.MaterialCardView
                     android:id="@+id/card_generar_carnet"
                     android:layout_width="0dp"
-                    android:layout_height="wrap_content"
+                    android:layout_height="160dp"
                     android:layout_weight="1"
-                    android:layout_marginEnd="8dp"
+                    android:layout_marginEnd="12dp"
                     android:clickable="true"
                     android:focusable="true"
                     app:cardCornerRadius="16dp"
-                    app:cardElevation="2dp"
+                    app:cardElevation="4dp"
                     app:strokeColor="@color/bg_card_border"
                     app:strokeWidth="1dp">
 
                     <LinearLayout
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
+                        android:layout_height="match_parent"
                         android:gravity="center"
                         android:orientation="vertical"
                         android:padding="16dp">
 
                         <ImageView
-                            android:layout_width="40dp"
-                            android:layout_height="40dp"
+                            android:layout_width="48dp"
+                            android:layout_height="48dp"
                             android:contentDescription="Icono"
                             android:src="@drawable/id_card_24px"
                             app:tint="@color/header_blue" />
@@ -194,7 +194,7 @@
                             android:layout_marginTop="12dp"
                             android:text="Generar Carnet"
                             android:textColor="@color/text_card_title"
-                            android:textSize="14sp"
+                            android:textSize="16sp"
                             android:textStyle="bold" />
 
                     </LinearLayout>
@@ -204,26 +204,26 @@
 
                     android:id="@+id/card_ajuste_mas"
                     android:layout_width="0dp"
-                    android:layout_height="wrap_content"
+                    android:layout_height="160dp"
                     android:layout_weight="1"
-                    android:layout_marginStart="8dp"
+                    android:layout_marginStart="12dp"
                     android:clickable="true"
                     android:focusable="true"
                     app:cardCornerRadius="16dp"
-                    app:cardElevation="2dp"
+                    app:cardElevation="4dp"
                     app:strokeColor="@color/bg_card_border"
                     app:strokeWidth="1dp">
 
                     <LinearLayout
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
+                        android:layout_height="match_parent"
                         android:gravity="center"
                         android:orientation="vertical"
                         android:padding="16dp">
 
                         <ImageView
-                            android:layout_width="40dp"
-                            android:layout_height="40dp"
+                            android:layout_width="48dp"
+                            android:layout_height="48dp"
                             android:contentDescription="Icono"
                             android:src="@drawable/ajustes"
                             app:tint="@color/header_blue" />
@@ -235,7 +235,7 @@
 
                             android:text="Ajustes y Mas"
                             android:textColor="@color/text_card_title"
-                            android:textSize="14sp"
+                            android:textSize="16sp"
                             android:textStyle="bold" />
 
                     </LinearLayout>

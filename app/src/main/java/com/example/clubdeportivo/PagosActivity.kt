@@ -34,24 +34,20 @@ class PagosActivity : AppCompatActivity() {
         // Inicializar DB
         dbHelper = DatabaseHelper(this)
 
-        val tipo =
-            intent.getStringExtra("tipo")
+        findViewById<android.widget.ImageButton>(R.id.btnBack).setOnClickListener {
+            finish()
+        }
 
-        val socio =
-            if (Build.VERSION.SDK_INT >= 33) {
+        val tipo = intent.getStringExtra("tipo") ?: intent.getStringExtra("TIPO")
 
-                intent.getSerializableExtra(
-                    "socio",
-                    Socio::class.java
-                )
-
-            } else {
-
-                @Suppress("DEPRECATION")
-                intent.getSerializableExtra(
-                    "socio"
-                ) as? Socio
-            }
+        val socio = if (Build.VERSION.SDK_INT >= 33) {
+            intent.getSerializableExtra("socio", Socio::class.java) 
+                ?: intent.getSerializableExtra("SOCIO", Socio::class.java)
+        } else {
+            @Suppress("DEPRECATION")
+            (intent.getSerializableExtra("socio") as? Socio) 
+                ?: (intent.getSerializableExtra("SOCIO") as? Socio)
+        }
 
 
 

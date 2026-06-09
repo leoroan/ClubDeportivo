@@ -12,15 +12,31 @@
         android:layout_height="92dp"
         android:background="@color/button_blue"
         android:elevation="8dp"
-        android:paddingHorizontal="48dp">
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:paddingHorizontal="16dp">
+
+        <ImageButton
+            android:id="@+id/btnBack"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:background="?android:attr/selectableItemBackgroundBorderless"
+            android:src="@android:drawable/ic_menu_revert"
+            app:tint="@color/white" />
+
         <TextView
-            android:layout_width="match_parent"
+            android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:text="Vista de Carnet"
-            android:textStyle="bold"
-            android:textColor="@color/white"
+            android:layout_weight="1"
             android:gravity="center"
-            android:textSize="20sp"/>
+            android:text="Vista de Carnet"
+            android:textColor="@color/white"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+
+        <View
+            android:layout_width="48dp"
+            android:layout_height="48dp" />
     </LinearLayout>
 
     <!-- Subtítulo -->
