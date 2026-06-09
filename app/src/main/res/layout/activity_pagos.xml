@@ -7,16 +7,37 @@
     android:background="#F8FAFF"
     android:orientation="vertical">
 
-    <TextView
-        android:id="@+id/headerTitle"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="80dp"
         android:background="#1D5CFF"
-        android:gravity="center"
-        android:text="Gestión de Pagos"
-        android:textColor="#FFFFFF"
-        android:textSize="20sp"
-        android:textStyle="bold" />
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:paddingHorizontal="16dp">
+
+        <ImageButton
+            android:id="@+id/btnBack"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:background="?android:attr/selectableItemBackgroundBorderless"
+            android:src="@android:drawable/ic_menu_revert"
+            app:tint="#FFFFFF" />
+
+        <TextView
+            android:id="@+id/headerTitle"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="Gestión de Pagos"
+            android:textColor="#FFFFFF"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+
+        <View
+            android:layout_width="48dp"
+            android:layout_height="48dp" />
+    </LinearLayout>
 
     <ScrollView
         android:layout_width="match_parent"
@@ -30,12 +51,13 @@
             android:orientation="vertical">
 
             <TextView
+                android:id="@+id/btnVolverTexto"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-
                 android:drawablePadding="8dp"
                 android:text="Volver a buscar"
-                android:textColor="#1D5CFF" />
+                android:textColor="#1D5CFF"
+                android:visibility="gone" />
 
             <androidx.cardview.widget.CardView
                 android:layout_width="match_parent"
@@ -52,6 +74,7 @@
                     android:padding="20dp">
 
                     <TextView
+                        android:id="@+id/txtNombre"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Maria Gomez"
@@ -60,6 +83,7 @@
                         android:textStyle="bold" />
 
                     <TextView
+                        android:id="@+id/txtDetalle"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="N° S-1002 • DNI: 87654321"
@@ -76,12 +100,14 @@
                         android:layout_height="wrap_content">
 
                         <TextView
+
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="Vencimiento"
                             android:textColor="#A0A5B1" />
 
                         <TextView
+                            android:id="@+id/txtVencimiento"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_alignParentEnd="true"
@@ -105,6 +131,7 @@
                             android:textColor="#FFC1C1" />
 
                         <TextView
+                            android:id="@+id/txtMonto"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="$15000"

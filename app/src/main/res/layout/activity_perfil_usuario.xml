@@ -13,6 +13,7 @@
         android:paddingHorizontal="16dp">
 
         <ImageView
+            android:id="@+id/btnBack"
             android:layout_width="24dp"
             android:layout_height="24dp"
             android:layout_centerVertical="true"
@@ -54,6 +55,7 @@
                     android:orientation="vertical">
 
                     <TextView
+                        android:id="@+id/tvPerfilNombre"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Carlos Administrador"
@@ -62,6 +64,7 @@
                         android:textStyle="bold" />
 
                     <TextView
+                        android:id="@+id/tvPerfilRol"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="4dp"
@@ -98,7 +101,7 @@
                         <!-- android:src="@drawable/ic_mail" -->
                         <LinearLayout android:layout_toEndOf="@id/ic_mail" style="@style/TextGroupStyle">
                             <TextView android:text="Correo Electrónico" style="@style/LabelStyle"/>
-                            <TextView android:text="admin@clubdeportivo.com" style="@style/ValueStyle"/>
+                            <TextView android:id="@+id/tvPerfilEmail" android:text="admin@clubdeportivo.com" style="@style/ValueStyle"/>
                         </LinearLayout>
                     </RelativeLayout>
 
@@ -107,7 +110,7 @@
                         <!-- android:src="@drawable/ic_phone" -->
                         <LinearLayout android:layout_toEndOf="@id/ic_phone" style="@style/TextGroupStyle">
                             <TextView android:text="Teléfono" style="@style/LabelStyle"/>
-                            <TextView android:text="+54 11 1234-5678" style="@style/ValueStyle"/>
+                            <TextView android:id="@+id/tvPerfilTelefono" android:text="+54 11 1234-5678" style="@style/ValueStyle"/>
                         </LinearLayout>
                     </RelativeLayout>
 
@@ -116,7 +119,7 @@
                         <!-- android:src="@drawable/ic_location" -->
                         <LinearLayout android:layout_toEndOf="@id/ic_location" style="@style/TextGroupStyle">
                             <TextView android:text="Sede Asignada" style="@style/LabelStyle"/>
-                            <TextView android:text="Sede Central (Belgrano)" style="@style/ValueStyle"/>
+                            <TextView android:id="@+id/tvPerfilSede" android:text="Sede Central (Belgrano)" style="@style/ValueStyle"/>
                         </LinearLayout>
                     </RelativeLayout>
                 </LinearLayout>

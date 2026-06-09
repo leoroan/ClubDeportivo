@@ -7,10 +7,27 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
+import android.widget.TextView
+import com.example.clubdeportivo.models.Socio
+
 class CarnetNoSocioActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_carnet_no_socio)
+
+        val socio = intent.getSerializableExtra("socio") as? Socio
+
+        socio?.let {
+            findViewById<TextView>(R.id.tvNombreNoSocio).text = "${it.nombre} ${it.apellido}"
+            findViewById<TextView>(R.id.tvDetallesNoSocio).text = "N° NS-${it.carnetNumero} * DNI: ${it.dni}"
+            findViewById<TextView>(R.id.tvVencimientoNoSocio).text = "VENCE ${it.vencimiento.ifEmpty { "N/A" }}"
+            // Para No Socios podríamos ocultar o cambiar el texto de actividad si no está en el modelo Socio
+            findViewById<TextView>(R.id.tvActividadNoSocio).text = "PASE DIARIO"
+        }
+
+        findViewById<android.widget.ImageButton>(R.id.btnBack).setOnClickListener {
+            finish()
+        }
 
         findViewById<Button>(R.id.btn_cerrar)?.setOnClickListener {
             Toast.makeText(this, "Cerrando carnet", Toast.LENGTH_SHORT).show()
